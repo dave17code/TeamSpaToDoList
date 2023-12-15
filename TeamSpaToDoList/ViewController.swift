@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var toDoListData: [String] = []
+    
     @IBOutlet weak var topSafeAreaFill: UIImageView!
     @IBOutlet weak var jjangGuTopHStackView: UIStackView!
     @IBOutlet weak var jjangGuTop1: UIImageView!
@@ -47,47 +49,52 @@ class ViewController: UIViewController {
         let title = "해야할 일이 생기셨군요 🙏🏻"
         let message = "(띄어쓰기 포함 15자 작성)"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let ok = UIAlertAction(title: "작성하기 ✍🏻", style: .default) { _ in
-            // 작성하기 눌렀을 때 실행할 내용
-            print("작성하기")
+        let cancel = UIAlertAction(title: "취소", style: .default)
+        let ok = UIAlertAction(title: "작성하기", style: .default) { [self] _ in
+            // 작성하기 누르면 실행
+            if let text = alert.textFields?[0].text {
+                toDoListData.append(text)
+                toDoList.reloadData()
+            } else {}
         }
+        
         alert.addAction(cancel)
         alert.addAction(ok)
         alert.addTextField() { (txField) in
             txField.placeholder = "해야할 일 작성"
-            txField.delegate = self
+            txField.addTarget(self, action: #selector(self.textCountLimit(_:)), for: .editingChanged)
         }
-        
         self.present(alert, animated: true)
     }
     
+    // alert에 추가된 txField 글자 수 제한
+    @objc func textCountLimit(_ sender: UITextField) {
+        if sender.text!.count > 15 {
+            sender.deleteBackward()
+        }
+    }
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 40
     }
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        return toDoListData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = toDoList.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row)"
-        return cell
-    }
-}
+        cell.textLabel?.font = UIFont(name: "Ansungtangmyun-Bold", size: 15)
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.textAlignment = NSTextAlignment.center
+        cell.backgroundColor = .black
+        cell.selectionStyle = .none
 
-// UIAlertController에 추가 된 텍스트 필드 글자 수 제한
-extension ViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        return !(textField.text!.count > 15)
+        cell.textLabel?.text = toDoListData[indexPath.row]
+        return cell
     }
 }
