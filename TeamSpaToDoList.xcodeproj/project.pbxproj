@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4A56882B2C2CBD0036DC65 /* Ansungtangmyun-ESG.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A56862B2C2CBD0036DC65 /* Ansungtangmyun-ESG.otf */; };
+		4E4A56892B2C2CBD0036DC65 /* Ansungtangmyun-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A56872B2C2CBD0036DC65 /* Ansungtangmyun-Bold.otf */; };
 		4E4D57752B29AF2D001376A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D57742B29AF2D001376A1 /* AppDelegate.swift */; };
 		4E4D57772B29AF2D001376A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D57762B29AF2D001376A1 /* SceneDelegate.swift */; };
 		4E4D57792B29AF2D001376A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D57782B29AF2D001376A1 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E4A56862B2C2CBD0036DC65 /* Ansungtangmyun-ESG.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ansungtangmyun-ESG.otf"; sourceTree = "<group>"; };
+		4E4A56872B2C2CBD0036DC65 /* Ansungtangmyun-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ansungtangmyun-Bold.otf"; sourceTree = "<group>"; };
 		4E4D57712B29AF2D001376A1 /* TeamSpaToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamSpaToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4D57742B29AF2D001376A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E4D57762B29AF2D001376A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4A56852B2C2C5F0036DC65 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				4E4A56872B2C2CBD0036DC65 /* Ansungtangmyun-Bold.otf */,
+				4E4A56862B2C2CBD0036DC65 /* Ansungtangmyun-ESG.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		4E4D57682B29AF2C001376A1 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +69,7 @@
 		4E4D57732B29AF2D001376A1 /* TeamSpaToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				4E4A56852B2C2C5F0036DC65 /* Font */,
 				4E4D57742B29AF2D001376A1 /* AppDelegate.swift */,
 				4E4D57762B29AF2D001376A1 /* SceneDelegate.swift */,
 				4E4D57782B29AF2D001376A1 /* ViewController.swift */,
@@ -125,7 +139,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4A56882B2C2CBD0036DC65 /* Ansungtangmyun-ESG.otf in Resources */,
 				4E4D57812B29AF2E001376A1 /* LaunchScreen.storyboard in Resources */,
+				4E4A56892B2C2CBD0036DC65 /* Ansungtangmyun-Bold.otf in Resources */,
 				4E4D577E2B29AF2E001376A1 /* Assets.xcassets in Resources */,
 				4E4D577C2B29AF2D001376A1 /* Main.storyboard in Resources */,
 			);

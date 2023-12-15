@@ -42,6 +42,27 @@ class ViewController: UIViewController {
         toDoList.delegate = self
         toDoList.dataSource = self
     }
+    
+    @IBAction func writeToDoList(_ sender: Any) {
+        let title = "해야할 일이 생기셨군요 🙏🏻"
+        let message = "(띄어쓰기 포함 15자 작성)"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let ok = UIAlertAction(title: "작성하기 ✍🏻", style: .default) { _ in
+            // 작성하기 눌렀을 때 실행할 내용
+            print("작성하기")
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        alert.addTextField() { (txField) in
+            txField.placeholder = "해야할 일 작성"
+            txField.delegate = self
+        }
+        
+        self.present(alert, animated: true)
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate {
@@ -58,9 +79,15 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = toDoList.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         cell.textLabel?.text = "\(indexPath.row)"
-        
         return cell
+    }
+}
+
+// UIAlertController에 추가 된 텍스트 필드 글자 수 제한
+extension ViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        return !(textField.text!.count > 15)
     }
 }
