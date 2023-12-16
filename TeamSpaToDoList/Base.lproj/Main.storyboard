@@ -24,7 +24,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="86y-Sg-Oyg">
                                 <rect key="frame" x="0.0" y="202" width="390" height="473"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" systemColor="systemIndigoColor"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="V0F-td-tpv">
                                         <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
@@ -111,6 +111,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="MtO-Hu-Ir0" secondAttribute="bottom" id="0Ve-yA-gM8"/>
                             <constraint firstItem="MtO-Hu-Ir0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0WU-hm-nZ1"/>
+                            <constraint firstItem="SZT-U9-hlJ" firstAttribute="top" secondItem="86y-Sg-Oyg" secondAttribute="bottom" id="40R-S2-ZwE"/>
                             <constraint firstItem="sF2-zr-Dfm" firstAttribute="top" secondItem="vhI-Tq-Dg3" secondAttribute="bottom" id="4JU-BA-ypR"/>
                             <constraint firstItem="SZT-U9-hlJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4Su-AI-zdu"/>
                             <constraint firstItem="SZT-U9-hlJ" firstAttribute="top" secondItem="86y-Sg-Oyg" secondAttribute="bottom" id="5Sf-SK-IWq"/>
@@ -120,11 +121,14 @@
                             <constraint firstItem="86y-Sg-Oyg" firstAttribute="top" secondItem="2nF-Cq-mz4" secondAttribute="bottom" id="Exx-73-K40"/>
                             <constraint firstItem="sF2-zr-Dfm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="L4l-qC-UcZ"/>
                             <constraint firstItem="sF2-zr-Dfm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Mig-Kl-JPi"/>
+                            <constraint firstItem="86y-Sg-Oyg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="O7N-BJ-zfZ"/>
                             <constraint firstItem="86y-Sg-Oyg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Per-LZ-8CY"/>
                             <constraint firstAttribute="trailing" secondItem="vhI-Tq-Dg3" secondAttribute="trailing" id="S6a-GS-cD0"/>
                             <constraint firstItem="MtO-Hu-Ir0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wde-KY-vVM"/>
                             <constraint firstItem="vhI-Tq-Dg3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cHG-q0-8nt"/>
                             <constraint firstItem="2nF-Cq-mz4" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hnY-LI-ANt"/>
+                            <constraint firstItem="86y-Sg-Oyg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rnL-Y6-GQL"/>
+                            <constraint firstItem="86y-Sg-Oyg" firstAttribute="top" secondItem="2nF-Cq-mz4" secondAttribute="bottom" id="sF1-kt-5EM"/>
                             <constraint firstItem="MtO-Hu-Ir0" firstAttribute="top" secondItem="SZT-U9-hlJ" secondAttribute="bottom" id="sGQ-BT-tv6"/>
                             <constraint firstItem="sF2-zr-Dfm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vCU-uh-dxC"/>
                             <constraint firstItem="SZT-U9-hlJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xdW-Da-jXR"/>
@@ -141,13 +145,13 @@
                         <outlet property="jjangGuTop3" destination="0cQ-Ko-j6j" id="by5-6A-dY3"/>
                         <outlet property="jjangGuTopHStackView" destination="sF2-zr-Dfm" id="t5X-A4-J4H"/>
                         <outlet property="titleWithDate" destination="7kE-HT-iem" id="g6A-Rx-JvQ"/>
-                        <outlet property="toDoList" destination="86y-Sg-Oyg" id="tJI-oE-rYd"/>
+                        <outlet property="toDoListTableView" destination="86y-Sg-Oyg" id="Yui-YD-xg3"/>
                         <outlet property="topSafeAreaFill" destination="vhI-Tq-Dg3" id="lVj-Uk-zAO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1040" y="-4511"/>
+            <point key="canvasLocation" x="-1525" y="-7602"/>
         </scene>
     </scenes>
     <resources>

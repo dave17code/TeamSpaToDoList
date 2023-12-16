@@ -9,7 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var toDoListData: [String] = []
+    var toDoListData: [String] = ["연말 동창회 모임 참석", "졸업 과제 전시", "투두리스트 iOS 앱스토어 출시", "헤어샵 다녀오기", "헬스 PT", "교회 예배 다녀오기", "크리스마스 트리 장식"]
+        
+    let jjangCenterImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "jjangGuCenter")
+        return imageView
+    }()
     
     @IBOutlet weak var topSafeAreaFill: UIImageView!
     @IBOutlet weak var jjangGuTopHStackView: UIStackView!
@@ -21,7 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var jjangGuBottom2: UIImageView!
     @IBOutlet weak var jjangGuBottom3: UIImageView!
     @IBOutlet weak var titleWithDate: UILabel!
-    @IBOutlet weak var toDoList: UITableView!
+    @IBOutlet weak var toDoListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,20 +47,26 @@ class ViewController: UIViewController {
         fomatter.dateFormat = "yyyy-MM-dd"
         titleWithDate.text = "\(fomatter.string(from: Date()))" + " 🙏🏻 일 목록"
         
-        toDoList.delegate = self
-        toDoList.dataSource = self
+        toDoListTableView.delegate = self
+        toDoListTableView.dataSource = self
+        toDoListTableView.showsVerticalScrollIndicator = false
+        
+        if toDoListData.isEmpty {
+            toDoListTableView.backgroundView = jjangCenterImageView
+        }
     }
     
     @IBAction func writeToDoList(_ sender: Any) {
         let title = "해야할 일이 생기셨군요 🙏🏻"
-        let message = "(띄어쓰기 포함 15자 작성)"
+        let message = "(띄어쓰기 포함 20자 작성)"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .default)
         let ok = UIAlertAction(title: "작성하기", style: .default) { [self] _ in
-            // 작성하기 누르면 실행
+            
             if let text = alert.textFields?[0].text {
                 toDoListData.append(text)
-                toDoList.reloadData()
+                toDoListTableView.backgroundView = .none
+                toDoListTableView.reloadData()
             } else {}
         }
         
@@ -67,9 +79,8 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    // alert에 추가된 txField 글자 수 제한
     @objc func textCountLimit(_ sender: UITextField) {
-        if sender.text!.count > 15 {
+        if sender.text!.count > 20 {
             sender.deleteBackward()
         }
     }
@@ -79,6 +90,32 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let like = UIContextualAction(style: .normal, title: "완료") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("완료")
+            success(true)
+            
+            toDoListData.remove(at: indexPath.row)
+            if toDoListData.isEmpty {
+                toDoListTableView.backgroundView = jjangCenterImageView
+            }
+            toDoListTableView.reloadData()
+        }
+            
+        like.backgroundColor = .systemGreen
+                
+        let share = UIContextualAction(style: .normal, title: "수정") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("수정")
+            success(true)
+        }
+            
+        share.backgroundColor = .systemBlue
+        
+        //actions배열 인덱스 0이 왼쪽에 붙어서 나옴
+        return UISwipeActionsConfiguration(actions:[like, share])
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -87,14 +124,17 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = toDoList.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cell = toDoListTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.font = UIFont(name: "Ansungtangmyun-Bold", size: 15)
         cell.textLabel?.textColor = .white
         cell.textLabel?.textAlignment = NSTextAlignment.center
         cell.backgroundColor = .black
         cell.selectionStyle = .none
-
         cell.textLabel?.text = toDoListData[indexPath.row]
+        
+        
+        
         return cell
     }
 }
