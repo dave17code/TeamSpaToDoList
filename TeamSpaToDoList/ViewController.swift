@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var toDoListData: [String] = ["연말 동창회 모임 참석", "졸업 과제 전시", "투두리스트 iOS 앱스토어 출시", "헤어샵 다녀오기", "헬스 PT", "교회 예배 다녀오기", "크리스마스 트리 장식"]
+    var toDoListData: [String] = []
         
     let jjangCenterImageView: UIImageView = {
         let imageView = UIImageView()
@@ -47,10 +47,14 @@ class ViewController: UIViewController {
         fomatter.dateFormat = "yyyy-MM-dd"
         titleWithDate.text = "\(fomatter.string(from: Date()))" + " 🙏🏻 일 목록"
         
+        if let data = UserDefaults.standard.stringArray(forKey: "toDoListData") {
+            toDoListData = data
+        }
+        
         toDoListTableView.delegate = self
         toDoListTableView.dataSource = self
         toDoListTableView.showsVerticalScrollIndicator = false
-        
+
         if toDoListData.isEmpty {
             toDoListTableView.backgroundView = jjangCenterImageView
         }
@@ -65,6 +69,7 @@ class ViewController: UIViewController {
             
             if let text = alert.textFields?[0].text {
                 toDoListData.append(text)
+                UserDefaults.standard.setValue(toDoListData, forKey: "toDoListData")
                 toDoListTableView.backgroundView = .none
                 toDoListTableView.reloadData()
             } else {}
@@ -87,38 +92,35 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let like = UIContextualAction(style: .normal, title: "완료") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            print("완료")
-            success(true)
+        let completion = UIContextualAction(style: .normal, title: "완료") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             
             toDoListData.remove(at: indexPath.row)
+            UserDefaults.standard.setValue(toDoListData, forKey: "toDoListData")
+            
             if toDoListData.isEmpty {
                 toDoListTableView.backgroundView = jjangCenterImageView
             }
             toDoListTableView.reloadData()
         }
-            
-        like.backgroundColor = .systemGreen
-                
-        let share = UIContextualAction(style: .normal, title: "수정") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            print("수정")
-            success(true)
-        }
-            
-        share.backgroundColor = .systemBlue
         
-        //actions배열 인덱스 0이 왼쪽에 붙어서 나옴
-        return UISwipeActionsConfiguration(actions:[like, share])
+        completion.backgroundColor = .systemGreen
+        
+        let config = UISwipeActionsConfiguration(actions:[completion])
+        config.performsFirstActionWithFullSwipe = false
+        
+        return config
     }
 }
 
 extension ViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoListData.count
     }
@@ -132,8 +134,6 @@ extension ViewController: UITableViewDataSource {
         cell.backgroundColor = .black
         cell.selectionStyle = .none
         cell.textLabel?.text = toDoListData[indexPath.row]
-        
-        
         
         return cell
     }
