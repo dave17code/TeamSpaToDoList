@@ -4,7 +4,8 @@
 
 <img width="210" alt="투두 리스트 과제 Read Me 1" src="https://github.com/dave17code/TeamSpaToDoList/assets/151927621/f96ac3af-437b-4174-b25c-278d0b8cbba4"><img width="210" alt="투두 리스트 과제 Read Me 2" src="https://github.com/dave17code/TeamSpaToDoList/assets/151927621/0a036637-8e82-4020-b6d2-924b27021dba"><img width="210" alt="투두 리스트 과제 Read Me 3" src="https://github.com/dave17code/TeamSpaToDoList/assets/151927621/7092dedc-48c9-498c-b99b-a42e5ee983da">
 
-#### 💡 배운점
+---
+#### 💡 배운점    
 
 1. UITableView, UITableViewCell의 활용 
 
@@ -25,14 +26,3 @@
 4. UserDefaults 사용
 
    - UserDefaults는 애플이 기본 제공하는 데이터 저장 방식으로 간편하게 사용할 수 있었다. 하지만 앱을 삭제할 시에는 데이터 저장이 불가능함
-
-
-
-
-
-
-   
-
- 
-
-
